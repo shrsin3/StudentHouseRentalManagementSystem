@@ -10,7 +10,7 @@ The following are some of the *user stories* reagrding how my application can be
 - As a user, I want to be able to add a house to my housing list.
 - As a user, I want to be able to mark a house as rented in my housing list.
 - As a user, I want to remove a house from my housing list.
-- As a user, I want to be able to view the list of house titles that are available for rent in my housing list.
+- As a user, I want to be able to view the list of houses that are available for rent in my housing list.
 
 
  
