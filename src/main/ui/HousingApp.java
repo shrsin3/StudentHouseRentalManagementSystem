@@ -7,17 +7,21 @@ import java.util.ArrayList;
 import java.lang.Iterable;
 import java.util.Scanner;
 
+// Housing Application
 public class HousingApp {
 
     private HouseList myHouseList;
     private Scanner input;
 
 
+    //EFFECTS: runs the housing application
     public HousingApp() {
 
         runHousingApp();
     }
 
+    //MODIFIES: this
+    //EFFCETS: processes user input
     private void runHousingApp() {
         boolean keepRunning = true;
         Integer userInput;
@@ -40,12 +44,15 @@ public class HousingApp {
 
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the house list
     private void init() {
         myHouseList = new HouseList();
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }
 
+    //EFFECTS: display menu of options for the main housing application
     public void printInstructions() {
         System.out.print("You can perform the following operations using this system-:" + "\n");
         System.out.print("1. To register a new house into the system enter 1." + "\n");
@@ -55,6 +62,8 @@ public class HousingApp {
         System.out.print("5. To quit enter 5" + "\n");
     }
 
+    //MODIFIES: this
+    //EFFECTS: processes user inputs
     private void performFunctions(Integer userInput) {
 
         if (userInput == 1) {
@@ -68,12 +77,15 @@ public class HousingApp {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: takes house information from user and adds house to myHouseList
     private void addHouse() {
         House userHouse = createHouse();
         myHouseList.addHouse(userHouse);
 
     }
 
+    //EFFECTS: takes user input to create a house and returns the house
     private House createHouse() {
         String ownerName;
         String ownerGender;
@@ -95,6 +107,7 @@ public class HousingApp {
     }
 
 
+    //EFFECTS: displays information of all the houses in myHouseList
     private void viewHouseList() {
 
         String houseStatus;
@@ -113,6 +126,9 @@ public class HousingApp {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: takes user input for registration number and if the house with that registration number is present
+    // in myHouseList, then remove that house
     public void removeHouse() {
         System.out.print("Enter House Registration Number= ");
         Integer regNumber = input.nextInt();
@@ -129,6 +145,8 @@ public class HousingApp {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: takes user input to for modification of house in the myHouseList
     public void modifyHouseList() {
 
         boolean keepRunning = true;
@@ -148,6 +166,7 @@ public class HousingApp {
     }
 
 
+    //EFFECTS: displays menu of options for the modifications that are possible through this application
     public void printInstructionsForModify() {
 
         System.out.print("You can perform the following modification operations -:" + "\n");
@@ -160,6 +179,8 @@ public class HousingApp {
 
     }
 
+    //MODIFIES: this
+    //EFFECTS: process user input to perform modification function on houses if house found in myHouseList
     public void performFunctionsForModify(int userInput) {
         int registrationNumber;
         System.out.print("Enter your house Registration Number" + "\n");
@@ -186,6 +207,8 @@ public class HousingApp {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: takes the user input for new address and changes the given house address
     public void modifyHouseAddress(House house) {
         System.out.print("Enter your new address" + "\n");
         String newAddress = input.next();
@@ -193,6 +216,8 @@ public class HousingApp {
         System.out.print("House Address Changed!" + "\n");
     }
 
+    //MODIFIES: this
+    //EFFECTS: takes the user input for new owner name and changes the given house owner's name
     public void modifyHouseOwnerName(House house) {
         System.out.print("Enter your new owner name" + "\n");
         String newOwnerName = input.next();
@@ -200,6 +225,8 @@ public class HousingApp {
         System.out.print("House Owner Name Changed!" + "\n");
     }
 
+    //MODIFIES: this
+    //EFFECTS: takes the user input for new rent amount and changes the given house rent amount
     public void modifyHouseRentAmount(House house) {
         System.out.print("Enter your new rent amount" + "\n");
         Double newRentAmount = input.nextDouble();
@@ -207,6 +234,8 @@ public class HousingApp {
         System.out.print("House Rent Amount Changed!" + "\n");
     }
 
+    //MODIFIES: this
+    //EFFECTS: takes the user input for new city and changes the given house city
     public void modifyHouseCity(House house) {
         System.out.print("Enter your new city" + "\n");
         String newHouseCity = input.next();
