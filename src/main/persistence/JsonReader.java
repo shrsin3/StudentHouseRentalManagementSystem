@@ -38,15 +38,15 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
+    // EFFECTS: parses houseList from JSON object and returns it
     private HouseList parseHouseList(JSONObject jsonObject) {
         HouseList houseList = new HouseList();
         addThingies(houseList, jsonObject);
         return houseList;
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingies from JSON object and adds them to workroom
+    // MODIFIES: houseList
+    // EFFECTS: parses house from JSON object and adds them to houseList
     private void addThingies(HouseList houseList, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("houses");
         for (Object json : jsonArray) {
@@ -55,8 +55,8 @@ public class JsonReader {
         }
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    // MODIFIES: houseList
+    // EFFECTS: parses house from JSON object and adds it to houseList
     private void addThingy(HouseList houseList, JSONObject jsonObject) {
         String ownerName = jsonObject.getString("Owner Name");
         String ownerGender = jsonObject.getString("Owner Gender");

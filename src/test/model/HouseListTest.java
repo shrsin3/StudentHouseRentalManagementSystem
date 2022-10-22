@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,13 +20,13 @@ public class HouseListTest {
     public void createHouseList() {
 
         house = new House("1203 My Road", "Vancouver", 1000.0,
-                "S Owner", "Male", false );
+                "S Owner", "Male", false);
         house2 = new House("1000 The Road", "Burnaby", 765.8,
-                "The Owner", "Female", false );
+                "The Owner", "Female", false);
         house3 = new House("1000 The Road", "Toronto", 1500.0,
-                "MILLI CO.", "Other" , false);
+                "MILLI CO.", "Other", false);
         house3 = new House("457 Underground", "Montreal", 890.98,
-                "Henry", "Male" , false);
+                "Henry", "Male", false);
 
         houseList = new HouseList();
     }
@@ -165,5 +168,52 @@ public class HouseListTest {
         assertEquals(house3, houseList.getHouseList().get(2));
 
     }
+
+    @Test
+    public void toJasonEmptyHouseList() {
+        JSONObject jsonObject;
+
+        jsonObject = houseList.toJson();
+        assertTrue(jsonObject.has("houses"));
+        JSONArray houses = jsonObject.getJSONArray("houses");
+        assertTrue(houses.isEmpty());
+
+
+    }
+
+    @Test
+    public void toJasonOneHouseList() {
+        JSONObject jsonObject;
+
+        houseList.addHouse(house);
+        jsonObject = houseList.toJson();
+        assertTrue(jsonObject.has("houses"));
+        JSONArray houses = jsonObject.getJSONArray("houses");
+        assertFalse(houses.isEmpty());
+        assertEquals(1, houses.length());
+        houses.get(0).equals(house.toJson());
+
+    }
+
+    @Test
+    public void toJasonMultipleHouseList() {
+        JSONObject jsonObject;
+
+        houseList.addHouse(house);
+        houseList.addHouse(house2);
+        houseList.addHouse(house3);
+        houseList.addHouse(house2);
+        jsonObject = houseList.toJson();
+        assertTrue(jsonObject.has("houses"));
+        JSONArray houses = jsonObject.getJSONArray("houses");
+        assertFalse(houses.isEmpty());
+        assertEquals(4, houses.length());
+        houses.get(0).equals(house.toJson());
+        houses.get(1).equals(house2.toJson());
+        houses.get(2).equals(house3.toJson());
+        houses.get(3).equals(house2.toJson());
+    }
+
 }
+
 

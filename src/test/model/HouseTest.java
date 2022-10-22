@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -212,6 +213,21 @@ class HouseTest {
         house2.modifyHouseCity("Vancouver");
         house2.modifyHouseCity("Toronto");
         assertEquals("Toronto", house2.getCity());
+
+    }
+
+    @Test
+    public void toJasonTest() {
+
+        JSONObject json;
+        json = house.toJson();
+        assertEquals("1203 My Road", json.getString("Address"));
+        assertTrue(Integer.parseInt(json.getString("Registration Number"))>0);
+        assertEquals("S Owner", json.getString("Owner Name"));
+        assertEquals("Male", json.getString("Owner Gender"));
+        assertEquals("Vancouver", json.getString("City of House"));
+        assertEquals("1000.0", json.getString("Rent Amount"));
+        assertEquals("false", json.getString("Rental Status"));
 
     }
 
