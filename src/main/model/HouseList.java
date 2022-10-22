@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 // this class the represents a collection of all the houses that are registered in the system
-public class HouseList {
+public class HouseList implements Writable {
 
     private ArrayList<House> houseList;
 
@@ -29,6 +33,24 @@ public class HouseList {
     // removes the first occurrence of the house
     public void removeHouseByValue(House house) {
         houseList.remove(house);
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("houses", housesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns house in this houseList as a JSON array
+    private JSONArray housesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (House house : this.getHouseList()) {
+            jsonArray.put(house.toJson());
+        }
+
+        return jsonArray;
     }
     
 }

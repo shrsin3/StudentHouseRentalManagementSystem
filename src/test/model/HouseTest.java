@@ -14,9 +14,9 @@ class HouseTest {
     @BeforeEach
     public void createHouse() {
         house = new House("1203 My Road", "Vancouver", 1000.0,
-                "S Owner", "Male" );
+                "S Owner", "Male", false);
         house2 = new House("1000 The Road", "Burnaby", 765.8,
-                "The Owner", "Female" );
+                "The Owner", "Female", false);
     }
 
     @Test

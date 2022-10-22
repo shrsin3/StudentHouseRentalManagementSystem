@@ -17,13 +17,13 @@ public class HouseListTest {
     public void createHouseList() {
 
         house = new House("1203 My Road", "Vancouver", 1000.0,
-                "S Owner", "Male" );
+                "S Owner", "Male", false );
         house2 = new House("1000 The Road", "Burnaby", 765.8,
-                "The Owner", "Female" );
+                "The Owner", "Female", false );
         house3 = new House("1000 The Road", "Toronto", 1500.0,
-                "MILLI CO.", "Other" );
+                "MILLI CO.", "Other" , false);
         house3 = new House("457 Underground", "Montreal", 890.98,
-                "Henry", "Male" );
+                "Henry", "Male" , false);
 
         houseList = new HouseList();
     }

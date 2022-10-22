@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // This represents the details of the houses in the housing application
-public class House {
+public class House implements Writable {
 
     private static Integer nextRegistrationNumber = 1;
     private Integer registrationNumber;
@@ -15,16 +18,15 @@ public class House {
     // REQUIRES: rentAmount > 0 and ownerGender should be one of Male, Female or Other
     // EFFECTS: creates a house with the given address, city, Rent Amount, Owner Name, Owner Gender.
     // The registration number is assigned automatically based on the number of houses in the system.
-    // The rental status for all houses is automatically assigned as false.
     public House(String address,String city,Double rentAmount,
-                      String ownerName,String ownerGender) {
+                      String ownerName,String ownerGender, Boolean isRented) {
         registrationNumber = nextRegistrationNumber++;
         this.address = address;
         this.city = city;
         this.rentAmount = rentAmount;
         this.ownerName = ownerName;
         this.ownerGender = ownerGender;
-        this.isRented = false;
+        this.isRented = isRented;
     }
 
     // EFFECTS: returns the registration number of the house.
@@ -96,6 +98,19 @@ public class House {
     //EFFECTS: changes the city of the house to the given city
     public void modifyHouseCity(String newHouseCity) {
         this.city = newHouseCity;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Registration Number", Integer.toString(registrationNumber));
+        json.put("Owner Name", ownerName);
+        json.put("Owner Gender", ownerGender);
+        json.put("Address", address);
+        json.put("City of House", city);
+        json.put("Rent Amount", Double.toString(rentAmount));
+        json.put("Rental Status", Boolean.toString(isRented));
+        return json;
     }
 
 }

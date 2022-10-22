@@ -2,6 +2,10 @@ package ui;
 
 import model.House;
 import model.HouseList;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import java.util.ArrayList;
 import java.lang.Iterable;
@@ -10,13 +14,18 @@ import java.util.Scanner;
 // Housing Application
 public class HousingApp {
 
+    private static final String JSON_STORE = "./data/houseList.json";
     private HouseList myHouseList;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
 
     //EFFECTS: runs the housing application
-    public HousingApp() {
+    public HousingApp() throws FileNotFoundException {
 
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runHousingApp();
     }
 
@@ -33,7 +42,7 @@ public class HousingApp {
             printInstructions();
             userInput = input.nextInt();
 
-            if (userInput == 5)  {
+            if (userInput == 7) {
                 break;
             } else {
                 performFunctions(userInput);
@@ -59,7 +68,9 @@ public class HousingApp {
         System.out.print("2. To view the list of registered houses enter 2" + "\n");
         System.out.print("3. To remove a house enter 3" + "\n");
         System.out.print("4. To modify details of existing house enter 4" + "\n");
-        System.out.print("5. To quit enter 5" + "\n");
+        System.out.print("5. To save house list to file enter 5" + "\n");
+        System.out.print("6. To load house list from file enter 6" + "\n");
+        System.out.print("7. To quit enter 7" + "\n");
     }
 
     //MODIFIES: this
@@ -74,6 +85,10 @@ public class HousingApp {
             removeHouse();
         } else if (userInput == 4) {
             modifyHouseList();
+        } else if (userInput == 5) {
+            saveHouseList();
+        } else if (userInput == 6) {
+            loadHouseList();
         }
     }
 
@@ -102,7 +117,7 @@ public class HousingApp {
         rentAmount = input.nextDouble();
         System.out.print("Enter House City=");
         city = input.next();
-        House userHouse = new House(address,city,rentAmount,ownerName,ownerGender);
+        House userHouse = new House(address, city, rentAmount, ownerName, ownerGender, false);
         return userHouse;
     }
 
@@ -111,7 +126,7 @@ public class HousingApp {
     private void viewHouseList() {
 
         String houseStatus;
-        for (House house: myHouseList.getHouseList()) {
+        for (House house : myHouseList.getHouseList()) {
             System.out.print("House Registration Number=" + house.getRegistrationNumber() + "\n");
             System.out.print("House Owner Name=" + house.getOwnerName() + "\n");
             System.out.print("House Owner Gender=" + house.getOwnerGender() + "\n");
@@ -133,14 +148,18 @@ public class HousingApp {
         System.out.print("Enter House Registration Number= ");
         Integer regNumber = input.nextInt();
         Boolean houseFound = false;
+        House houseToBeRemoved = null;
 
-        for (House house: myHouseList.getHouseList()) {
+        for (House house : myHouseList.getHouseList()) {
             if (regNumber == house.getRegistrationNumber()) {
-                myHouseList.removeHouseByValue(house);
+                houseToBeRemoved = house;
                 houseFound = true;
+                break;
             }
         }
-        if (!houseFound) {
+        if (houseFound) {
+            myHouseList.removeHouseByValue(houseToBeRemoved);
+        } else {
             System.out.print("House Not Registered!");
         }
     }
@@ -157,7 +176,7 @@ public class HousingApp {
 
             printInstructionsForModify();
             userInput = input.nextInt();
-            if (userInput == 6)  {
+            if (userInput == 6) {
                 break;
             } else {
                 performFunctionsForModify(userInput);
@@ -186,7 +205,7 @@ public class HousingApp {
         System.out.print("Enter your house Registration Number" + "\n");
         registrationNumber = input.nextInt();
         boolean houseFound = false;
-        for (House house: myHouseList.getHouseList()) {
+        for (House house : myHouseList.getHouseList()) {
             if (house.getRegistrationNumber() == registrationNumber) {
                 houseFound = true;
                 if (userInput == 1) {
@@ -241,6 +260,29 @@ public class HousingApp {
         String newHouseCity = input.next();
         house.modifyHouseCity(newHouseCity);
         System.out.print("House Rent Amount Changed!" + "\n");
+    }
+
+    // EFFECTS: saves the houseList to file
+    private void saveHouseList() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(myHouseList);
+            jsonWriter.close();
+            System.out.println("House List has been saved " + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads houseList from file
+    private void loadHouseList() {
+        try {
+            myHouseList = jsonReader.read();
+            System.out.println("House List has been Loaded" + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 
 }
