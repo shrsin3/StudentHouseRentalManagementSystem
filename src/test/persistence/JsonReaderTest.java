@@ -10,6 +10,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 
+// Class was taken and modified from JsonReaderTest in:
+// https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/test/persistence/JsonReaderTest.java
 public class JsonReaderTest extends JsonTest {
 
     @Test

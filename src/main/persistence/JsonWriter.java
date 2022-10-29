@@ -6,7 +6,9 @@ import org.json.JSONObject;
 
 import java.io.*;
 
-// Represents a writer that writes JSON representation of workroom to file
+// Class was taken and modified from JsonWriter in:
+// https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/persistence/JsonWriter.java
+// Represents a writer that writes JSON representation of houseList to file
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;

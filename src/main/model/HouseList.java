@@ -6,6 +6,7 @@ import persistence.Writable;
 
 import java.util.ArrayList;
 
+
 // this class the represents a collection of all the houses that are registered in the system
 public class HouseList implements Writable {
 
@@ -35,6 +36,8 @@ public class HouseList implements Writable {
         houseList.remove(house);
     }
 
+    // Method was taken and modified from toJson() in:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/model/WorkRoom.java
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -42,6 +45,8 @@ public class HouseList implements Writable {
         return json;
     }
 
+    // Method was taken and modified from thingiesToJson() in:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/model/WorkRoom.java
     // EFFECTS: returns house in this houseList as a JSON array
     private JSONArray housesToJson() {
         JSONArray jsonArray = new JSONArray();

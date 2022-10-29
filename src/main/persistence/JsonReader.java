@@ -10,7 +10,9 @@ import model.House;
 import model.HouseList;
 import org.json.*;
 
-// Represents a reader that reads workroom from JSON data stored in file
+// Class was taken and modified from JsonReader in:
+// https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/persistence/JsonReader.java
+// Represents a reader that reads houseList from JSON data stored in file
 public class JsonReader {
     private String source;
 
@@ -19,7 +21,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads houseList from file and returns it;
     // throws IOException if an error occurs reading data from file
     public HouseList read() throws IOException {
         String jsonData = readFile(source);

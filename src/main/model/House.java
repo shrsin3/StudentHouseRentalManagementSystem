@@ -100,6 +100,8 @@ public class House implements Writable {
         this.city = newHouseCity;
     }
 
+    // Method was taken and modified from toJson() in:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/model/Thingy.java
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

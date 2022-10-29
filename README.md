@@ -11,8 +11,8 @@ The following are some of the *user stories* reagrding how my application can be
 - As a user, I want to be able to mark a house as rented in my housing list.
 - As a user, I want to remove a house from my housing list.
 - As a user, I want to be able to view the list of houses that are available for rent in my housing list.
-- As a user, I want to save my list of houses to the file.
-- As a user, I want to load my list of houses from the file.
+- As a user, I want to be able to save my list of houses to the file.
+- As a user, I want to be able to load my list of houses from the file.
 
 
  

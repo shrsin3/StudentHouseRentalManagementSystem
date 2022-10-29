@@ -262,6 +262,8 @@ public class HousingApp {
         System.out.print("House Rent Amount Changed!" + "\n");
     }
 
+    // Method was taken and modified from saveWorkRoom() in:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/ui/WorkRoomApp.java
     // EFFECTS: saves the houseList to file
     private void saveHouseList() {
         try {
@@ -274,6 +276,8 @@ public class HousingApp {
         }
     }
 
+    // Method was taken and modified from loadWorkRoom() in:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo/blob/master/src/main/ui/WorkRoomApp.java
     // MODIFIES: this
     // EFFECTS: loads houseList from file
     private void loadHouseList() {
