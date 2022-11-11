@@ -2,8 +2,12 @@ package ui;
 
 import model.House;
 import model.HouseList;
+import ui.UserRegistration;
 import persistence.JsonReader;
 import persistence.JsonWriter;
+
+import javax.swing.*;
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -12,7 +16,7 @@ import java.lang.Iterable;
 import java.util.Scanner;
 
 // Housing Application
-public class HousingApp {
+public class HousingApp extends JFrame {
 
     private static final String JSON_STORE = "./data/houseList.json";
     private HouseList myHouseList;
@@ -26,8 +30,11 @@ public class HousingApp {
 
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
+
+
         runHousingApp();
     }
+
 
     //MODIFIES: this
     //EFFCETS: processes user input
@@ -95,7 +102,10 @@ public class HousingApp {
     //MODIFIES: this
     //EFFECTS: takes house information from user and adds house to myHouseList
     private void addHouse() {
-        House userHouse = createHouse();
+
+        UserRegistration user = new UserRegistration(null);
+        House userHouse = user.registerHouse();
+        // House userHouse = createHouse();
         myHouseList.addHouse(userHouse);
 
     }
