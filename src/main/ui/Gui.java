@@ -230,7 +230,7 @@ public class Gui extends JFrame {
             super("Save Houses");
         }
 
-        // saves the myHouseList to the file, shows an error message if the file does not exist
+        //EFFECTS: saves the myHouseList to the file, shows an error message if the file does not exist
         @Override
         public void actionPerformed(ActionEvent evt) {
             try {
@@ -254,7 +254,7 @@ public class Gui extends JFrame {
             super("Load Houses");
         }
 
-        // loads data from the file, shows an error message if the file does not exist
+        //EFFECTS: loads data from the file, shows an error message if the file does not exist
         @Override
         public void actionPerformed(ActionEvent evt) {
             try {
