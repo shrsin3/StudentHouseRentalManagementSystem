@@ -2,7 +2,6 @@ package ui;
 
 import model.House;
 import model.HouseList;
-import ui.UserRegistration;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -103,9 +102,7 @@ public class HousingApp extends JFrame {
     //EFFECTS: takes house information from user and adds house to myHouseList
     private void addHouse() {
 
-        UserRegistration user = new UserRegistration(null);
-        House userHouse = user.registerHouse();
-        // House userHouse = createHouse();
+        House userHouse = createHouse();
         myHouseList.addHouse(userHouse);
 
     }
