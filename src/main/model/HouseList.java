@@ -26,6 +26,7 @@ public class HouseList implements Writable {
     //EFFECTS: adds house to the houseList
     public void addHouse(House house) {
         houseList.add(house);
+        EventLog.getInstance().logEvent(new Event("House Added to system!"));
     }
 
     //REQUIRES: house should be present in the list
@@ -34,6 +35,7 @@ public class HouseList implements Writable {
     // removes the first occurrence of the house
     public void removeHouseByValue(House house) {
         houseList.remove(house);
+        EventLog.getInstance().logEvent(new Event("House Removed from system!"));
     }
 
     // Method was taken and modified from toJson() in:

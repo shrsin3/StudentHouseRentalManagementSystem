@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.House;
 import model.HouseList;
 import persistence.JsonReader;
@@ -7,9 +9,7 @@ import persistence.JsonWriter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Timer;
@@ -31,18 +31,22 @@ public class Gui extends JFrame {
     // AlarmControllerUI.java
     //EFFECTS: Creates the main window of the application with the internal window with buttons, title and menu bar
     public Gui() throws FileNotFoundException {
-
-        myHouseList = new HouseList();
-        jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
+//        myHouseList = new HouseList();
+//        jsonWriter = new JsonWriter(JSON_STORE);
+//        jsonReader = new JsonReader(JSON_STORE);
         desktop = new JDesktopPane();
-        desktop.addMouseListener(new DesktopFocusAction());
-
+        init();
+//        desktop.addMouseListener(new DesktopFocusAction());
         setContentPane(desktop);
         controlPanel = new JInternalFrame("Housing Application", false, false, false, false);
         controlPanel.setLayout(new GridLayout());
-
         super.setTitle("Student House Rental Management System");
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                handleWindowClosing(desktop);
+            }
+        });
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1200,1000);
         controlPanel.pack();
@@ -54,6 +58,24 @@ public class Gui extends JFrame {
         addButtonPanel();
         addMenu();
         this.setVisible(true);
+    }
+
+    public void init() {
+        myHouseList = new HouseList();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+        desktop.addMouseListener(new DesktopFocusAction());
+
+    }
+
+    public void handleWindowClosing(JDesktopPane e) {
+        EventLog events = EventLog.getInstance();
+
+        for (Event event : events) {
+            System.out.println(event);
+        }
+        dispose();
+
     }
 
     //MODIFIES: this

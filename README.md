@@ -27,3 +27,22 @@ button. Clicking this button will remove the house from the housing list if it e
 an image of a house with plus sign will pop up which will automatically close in 5 seconds. This image indicates that the house has been added to the housing list.
 - You can save the state of my application by clicking on the "Save Houses" button in the buttons panel.
 - You can reload the state of my application by clicking on the "Load Houses" button in the buttons panel
+
+# Phase 4: Task 2
+
+The following is a representative sample of the events that occur when the program runs -:
+
+Fri Dec 02 14:24:45 PST 2022
+
+House Created!
+
+Fri Dec 02 14:24:45 PST 2022
+
+House Added to system!
+
+Fri Dec 02 14:24:53 PST 2022
+
+House Removed from system!
+
+
+

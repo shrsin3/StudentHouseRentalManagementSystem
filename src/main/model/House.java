@@ -27,6 +27,7 @@ public class House implements Writable {
         this.ownerName = ownerName;
         this.ownerGender = ownerGender;
         this.isRented = isRented;
+        EventLog.getInstance().logEvent(new Event("House Created!"));
     }
 
     // EFFECTS: returns the registration number of the house.
@@ -72,6 +73,7 @@ public class House implements Writable {
         } else {
             this.isRented = true;
         }
+        EventLog.getInstance().logEvent(new Event("House Rental Status Changed!"));
     }
 
 
@@ -79,12 +81,14 @@ public class House implements Writable {
     //EFFECTS: changes the address of the house to the given address
     public void modifyAddress(String newAddress) {
         this.address = newAddress;
+        EventLog.getInstance().logEvent(new Event("House Address Modified!"));
     }
 
     //MODIFIES: this
     //EFFECTS: changes the owner's name of the house to the given name
     public void modifyOwnerName(String newOwnerName) {
         this.ownerName = newOwnerName;
+        EventLog.getInstance().logEvent(new Event("House Owner Name Modified!"));
     }
 
     //REQUIRES: newRentAmount > 0
@@ -92,12 +96,14 @@ public class House implements Writable {
     //EFFECTS: changes the rent amount of the house to the given rent amount
     public void modifyRentAmount(Double newRentAmount) {
         this.rentAmount = newRentAmount;
+        EventLog.getInstance().logEvent(new Event("House Rent Amount Modified!"));
     }
 
     //MODIFIES: this
     //EFFECTS: changes the city of the house to the given city
     public void modifyHouseCity(String newHouseCity) {
         this.city = newHouseCity;
+        EventLog.getInstance().logEvent(new Event("House City Modified!"));
     }
 
     // Method was taken and modified from toJson() in:
