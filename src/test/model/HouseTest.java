@@ -11,6 +11,7 @@ class HouseTest {
 
     private House house;
     private House house2;
+    EventLog events;
 
     @BeforeEach
     public void createHouse() {
@@ -18,6 +19,7 @@ class HouseTest {
                 "S Owner", "Male", false);
         house2 = new House("1000 The Road", "Burnaby", 765.8,
                 "The Owner", "Female", false);
+
     }
 
     @Test
@@ -39,6 +41,7 @@ class HouseTest {
         assertTrue( house2.getRegistrationNumber()>0 &&
                 house.getRegistrationNumber() != house2.getRegistrationNumber());
         assertFalse(house2.getIsRented());
+        events = EventLog.getInstance();
     }
 
     @Test

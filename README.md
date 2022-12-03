@@ -44,5 +44,17 @@ Fri Dec 02 14:24:53 PST 2022
 
 House Removed from system!
 
+# Phase 4: Task 3
 
+The UML Diagram can be found below the README.md file.
+
+Some refactoring steps that I would take if had more time include-:
+- Split the Gui class into separate classes by creating a separate class for each of the buttons rather than including 
+all these classes within the Gui class as nested classes. Creating separate classes would promote cohesion and the 
+single responsibility principle.
+- In the Display class, I would create more methods to promote the single responsibility principle. 
+I would create a separate method to create the table instead of including it in the constructor. I would also 
+split the convertHouseList method to promote single responsibility principle by creating a separate method to get the 
+details of each house by passing the house as a parameter into the new method.
+- I would also create abstract classes to prevent code duplication in the Gui and the nested classes 
 
