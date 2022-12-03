@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class HouseListTest {
@@ -15,6 +18,7 @@ public class HouseListTest {
     private House house3;
     private House house4;
     private HouseList houseList;
+    EventLog events;
 
     @BeforeEach
     public void createHouseList() {
@@ -53,6 +57,18 @@ public class HouseListTest {
         assertEquals(house4, houseList.getHouseList().get(0));
         assertEquals(house3, houseList.getHouseList().get(1));
 
+        List<Event> l = new ArrayList<Event>();
+
+        EventLog el = events.getInstance();
+        for (Event next : el) {
+            l.add(next);
+        }
+
+        assertEquals("House Added to system!", l.get(l.size()-1).getDescription());
+        assertEquals("House Added to system!", l.get(l.size()-2).getDescription());
+        assertTrue(!l.get(l.size()-3).getDescription().equals("House Added to system!"));
+
+
     }
 
     @Test
@@ -62,6 +78,16 @@ public class HouseListTest {
         houseList.addHouse(house);
         assertEquals(1, houseList.getHouseList().size());
         assertEquals(house, houseList.getHouseList().get(0));
+
+        List<Event> l = new ArrayList<Event>();
+
+        EventLog el = events.getInstance();
+        for (Event next : el) {
+            l.add(next);
+        }
+        assertEquals("House Added to system!", l.get(l.size()-1).getDescription());
+        assertTrue(!l.get(l.size()-2).getDescription().equals("House Added to system!"));
+
 
     }
 
@@ -83,6 +109,18 @@ public class HouseListTest {
         assertEquals(house, houseList.getHouseList().get(0));
         assertEquals(house2, houseList.getHouseList().get(1));
         assertEquals(house3, houseList.getHouseList().get(2));
+
+        List<Event> l = new ArrayList<Event>();
+
+        EventLog el = events.getInstance();
+        for (Event next : el) {
+            l.add(next);
+        }
+        assertEquals("House Added to system!", l.get(l.size()-1).getDescription());
+        assertEquals("House Added to system!", l.get(l.size()-2).getDescription());
+        assertEquals("House Added to system!", l.get(l.size()-3).getDescription());
+        assertTrue(!l.get(l.size()-4).getDescription().equals("House Added to system!"));
+
 
     }
 
@@ -108,6 +146,18 @@ public class HouseListTest {
         assertEquals(house, houseList.getHouseList().get(2));
         assertEquals(house, houseList.getHouseList().get(3));
 
+        List<Event> l = new ArrayList<Event>();
+
+        EventLog el = events.getInstance();
+        for (Event next : el) {
+            l.add(next);
+        }
+        assertEquals("House Added to system!", l.get(l.size()-1).getDescription());
+        assertEquals("House Added to system!", l.get(l.size()-2).getDescription());
+        assertEquals("House Added to system!", l.get(l.size()-3).getDescription());
+        assertEquals("House Added to system!", l.get(l.size()-4).getDescription());
+        assertTrue(!l.get(l.size()-5).getDescription().equals("House Added to system!"));
+
     }
 
     @Test
@@ -118,6 +168,16 @@ public class HouseListTest {
         assertEquals(1, houseList.getHouseList().size());
         houseList.removeHouseByValue(house);
         assertEquals(0, houseList.getHouseList().size());
+
+        List<Event> l = new ArrayList<Event>();
+
+        EventLog el = events.getInstance();
+        for (Event next : el) {
+            l.add(next);
+        }
+
+        assertEquals("House Removed from system!", l.get(l.size()-1).getDescription());
+        assertTrue(!l.get(l.size()-2).getDescription().equals("House Removed from system!"));
     }
 
     @Test
@@ -138,6 +198,16 @@ public class HouseListTest {
 
         assertEquals(house, houseList.getHouseList().get(0));
         assertEquals(house2, houseList.getHouseList().get(1));
+
+        List<Event> l = new ArrayList<Event>();
+
+        EventLog el = events.getInstance();
+        for (Event next : el) {
+            l.add(next);
+        }
+
+        assertEquals("House Removed from system!", l.get(l.size()-1).getDescription());
+        assertTrue(!l.get(l.size()-2).getDescription().equals("House Removed from system!"));
 
     }
 
@@ -167,6 +237,17 @@ public class HouseListTest {
         assertEquals(house, houseList.getHouseList().get(1));
         assertEquals(house3, houseList.getHouseList().get(2));
 
+        List<Event> l = new ArrayList<Event>();
+
+        EventLog el = events.getInstance();
+        for (Event next : el) {
+            l.add(next);
+        }
+
+        assertEquals("House Removed from system!", l.get(l.size()-1).getDescription());
+        assertEquals("House Removed from system!", l.get(l.size()-2).getDescription());
+        assertEquals("House Removed from system!", l.get(l.size()-3).getDescription());
+        assertTrue(!l.get(l.size()-4).getDescription().equals("House Removed from system!"));
     }
 
     @Test

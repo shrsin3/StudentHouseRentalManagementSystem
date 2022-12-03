@@ -4,6 +4,9 @@ import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -41,7 +44,17 @@ class HouseTest {
         assertTrue( house2.getRegistrationNumber()>0 &&
                 house.getRegistrationNumber() != house2.getRegistrationNumber());
         assertFalse(house2.getIsRented());
-        events = EventLog.getInstance();
+
+        List<Event> l = new ArrayList<Event>();
+
+        EventLog el = events.getInstance();
+        for (Event next : el) {
+            l.add(next);
+        }
+        assertEquals("House Created!", l.get(0).getDescription());
+
+
+
     }
 
     @Test
@@ -95,6 +108,17 @@ class HouseTest {
         house2.changeIsRentedStatus();
         assertTrue(house.getIsRented());
         assertTrue(house2.getIsRented());
+
+        List<Event> l = new ArrayList<Event>();
+
+        EventLog el = events.getInstance();
+        for (Event next : el) {
+            l.add(next);
+        }
+        assertEquals("House Rental Status Changed!", l.get(l.size()-1).getDescription());
+        assertEquals("House Rental Status Changed!", l.get(l.size()-2).getDescription());
+        assertTrue(!l.get(l.size()-3).getDescription().equals("House Rental Status Changed!"));
+
     }
 
 
@@ -108,6 +132,18 @@ class HouseTest {
 
         assertTrue(house.getIsRented());
         assertFalse(house2.getIsRented());
+        List<Event> l = new ArrayList<Event>();
+
+        EventLog el = events.getInstance();
+        for (Event next : el) {
+            l.add(next);
+        }
+        assertEquals("House Rental Status Changed!", l.get(l.size()-1).getDescription());
+        assertEquals("House Rental Status Changed!", l.get(l.size()-2).getDescription());
+        assertEquals("House Rental Status Changed!", l.get(l.size()-3).getDescription());
+        assertEquals("House Rental Status Changed!", l.get(l.size()-4).getDescription());
+        assertEquals("House Rental Status Changed!", l.get(l.size()-5).getDescription());
+        assertTrue(!l.get(l.size()-6).getDescription().equals("House Rental Status Changed!"));
     }
 
     @Test
@@ -120,6 +156,15 @@ class HouseTest {
         assertEquals("1000 The Road", house2.getAddress());
         house2.modifyAddress("9274 This Address");
         assertEquals("9274 This Address", house2.getAddress());
+        List<Event> l = new ArrayList<Event>();
+
+        EventLog el = events.getInstance();
+        for (Event next : el) {
+            l.add(next);
+        }
+        assertEquals("House Address Modified!", l.get(l.size()-1).getDescription());
+        assertEquals("House Address Modified!", l.get(l.size()-2).getDescription());
+        assertTrue(!l.get(l.size()-3).getDescription().equals("House Address Modified!"));
     }
 
     @Test
@@ -137,6 +182,21 @@ class HouseTest {
         house2.modifyAddress("87 road");
         house2.modifyAddress("1000 The Road");
         assertEquals("1000 The Road", house2.getAddress());
+        List<Event> l = new ArrayList<Event>();
+
+        EventLog el = events.getInstance();
+        for (Event next : el) {
+            l.add(next);
+        }
+        assertEquals("House Address Modified!", l.get(l.size()-1).getDescription());
+        assertEquals("House Address Modified!", l.get(l.size()-2).getDescription());
+        assertEquals("House Address Modified!", l.get(l.size()-3).getDescription());
+        assertEquals("House Address Modified!", l.get(l.size()-4).getDescription());
+        assertEquals("House Address Modified!", l.get(l.size()-5).getDescription());
+        assertEquals("House Address Modified!", l.get(l.size()-6).getDescription());
+        assertEquals("House Address Modified!", l.get(l.size()-7).getDescription());
+        assertTrue(!l.get(l.size()-8).getDescription().equals("House Address Modified!"));
+
     }
 
     @Test
@@ -149,6 +209,16 @@ class HouseTest {
         assertEquals("The Owner", house2.getOwnerName());
         house2.modifyOwnerName("Mrs. THE");
         assertEquals("Mrs. THE", house2.getOwnerName());
+
+        List<Event> l = new ArrayList<Event>();
+
+        EventLog el = events.getInstance();
+        for (Event next : el) {
+            l.add(next);
+        }
+        assertEquals("House Owner Name Modified!", l.get(l.size()-1).getDescription());
+        assertEquals("House Owner Name Modified!", l.get(l.size()-2).getDescription());
+        assertTrue(!l.get(l.size()-3).getDescription().equals("House Owner Name Modified!"));
     }
 
     @Test
@@ -164,6 +234,20 @@ class HouseTest {
         house2.modifyOwnerName("Mrs. THE");
         house2.modifyOwnerName("Tia");
         assertEquals("Tia", house2.getOwnerName());
+
+        List<Event> l = new ArrayList<Event>();
+
+        EventLog el = events.getInstance();
+        for (Event next : el) {
+            l.add(next);
+        }
+        assertEquals("House Owner Name Modified!", l.get(l.size()-1).getDescription());
+        assertEquals("House Owner Name Modified!", l.get(l.size()-2).getDescription());
+        assertEquals("House Owner Name Modified!", l.get(l.size()-3).getDescription());
+        assertEquals("House Owner Name Modified!", l.get(l.size()-4).getDescription());
+        assertEquals("House Owner Name Modified!", l.get(l.size()-5).getDescription());
+        assertTrue(!l.get(l.size()-6).getDescription().equals("House Owner Name Modified!"));
+
     }
 
     @Test
@@ -176,6 +260,18 @@ class HouseTest {
         assertEquals(765.8, house2.getRentAmount());
         house2.modifyRentAmount(1980.0);
         assertEquals(1980.0, house2.getRentAmount());
+
+        List<Event> l = new ArrayList<Event>();
+
+        EventLog el = events.getInstance();
+        for (Event next : el) {
+            l.add(next);
+        }
+        assertEquals("House Rent Amount Modified!", l.get(l.size()-1).getDescription());
+        assertEquals("House Rent Amount Modified!", l.get(l.size()-2).getDescription());
+        assertTrue(!l.get(l.size()-3).getDescription().equals("House Rent Amount Modified!"));
+
+
     }
 
     @Test
@@ -190,6 +286,20 @@ class HouseTest {
         house2.modifyRentAmount(1980.0);
         house2.modifyRentAmount(980.87);
         assertEquals(980.87, house2.getRentAmount());
+
+        List<Event> l = new ArrayList<Event>();
+
+        EventLog el = events.getInstance();
+        for (Event next : el) {
+            l.add(next);
+        }
+        assertEquals("House Rent Amount Modified!", l.get(l.size()-1).getDescription());
+        assertEquals("House Rent Amount Modified!", l.get(l.size()-2).getDescription());
+        assertEquals("House Rent Amount Modified!", l.get(l.size()-3).getDescription());
+        assertEquals("House Rent Amount Modified!", l.get(l.size()-4).getDescription());
+        assertTrue(!l.get(l.size()-5).getDescription().equals("House Rent Amount Modified!"));
+
+
     }
 
     @Test
@@ -202,6 +312,15 @@ class HouseTest {
         house2.modifyHouseCity("Vancouver");
         assertEquals("Vancouver", house2.getCity());
 
+        List<Event> l = new ArrayList<Event>();
+
+        EventLog el = events.getInstance();
+        for (Event next : el) {
+            l.add(next);
+        }
+        assertEquals("House City Modified!", l.get(l.size()-1).getDescription());
+        assertEquals("House City Modified!", l.get(l.size()-2).getDescription());
+        assertTrue(!l.get(l.size()-3).getDescription().equals("House City Modified!"));
     }
 
     @Test
@@ -216,6 +335,20 @@ class HouseTest {
         house2.modifyHouseCity("Vancouver");
         house2.modifyHouseCity("Toronto");
         assertEquals("Toronto", house2.getCity());
+
+        List<Event> l = new ArrayList<Event>();
+
+        EventLog el = events.getInstance();
+        for (Event next : el) {
+            l.add(next);
+        }
+
+        assertEquals("House City Modified!", l.get(l.size()-1).getDescription());
+        assertEquals("House City Modified!", l.get(l.size()-2).getDescription());
+        assertEquals("House City Modified!", l.get(l.size()-3).getDescription());
+        assertEquals("House City Modified!", l.get(l.size()-4).getDescription());
+        assertEquals("House City Modified!", l.get(l.size()-5).getDescription());
+        assertTrue(!l.get(l.size()-6).getDescription().equals("House City Modified!"));
 
     }
 
