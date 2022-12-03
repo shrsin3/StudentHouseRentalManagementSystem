@@ -259,7 +259,6 @@ public class Gui extends JFrame {
                 jsonWriter.open();
                 jsonWriter.write(myHouseList);
                 jsonWriter.close();
-                System.out.println("House List has been saved " + " to " + JSON_STORE);
             } catch (FileNotFoundException e) {
                 JOptionPane.showMessageDialog(Gui.this, e.getMessage(), "System Error",
                         JOptionPane.ERROR_MESSAGE);
